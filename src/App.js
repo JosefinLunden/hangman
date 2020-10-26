@@ -1,11 +1,7 @@
 import React from 'react';
 import './App.css';
-import io from 'socket.io-client';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home, Multiplayer, Singleplayer } from './pages';
-
-//Connect to backend url
-const socket = io.connect('/');
 
 function App() {
   return (
