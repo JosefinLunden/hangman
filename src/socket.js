@@ -8,7 +8,7 @@ let socketId;
 //Update socketId from backend
 socket.on('createNewGame', (update) => {
   socketId = update.socketId;
-  console.log(socketId);
+  console.log(`socketId: ${socketId}`);
 });
 
 export { socket, socketId };
