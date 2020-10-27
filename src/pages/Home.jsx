@@ -7,5 +7,3 @@ export const Home = () => (
     <InitNewGame />
   </>
 );
-
-// export default Home;
