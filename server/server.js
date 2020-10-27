@@ -3,6 +3,7 @@ const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
 const game = require('./game');
+const getWord = require('./getWord');
 
 //Port from environment variable or default 8080
 const port = process.env.PORT || 8080;
@@ -19,6 +20,9 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('/hangman', function (req, res) {
   return res.send('Hangman Backend');
 });
+
+// Backend route to get random word from API
+app.use('/api/getword', getWord);
 
 //Enter Heroku - app routes through url
 // app.get('/*', function (req, res) {
