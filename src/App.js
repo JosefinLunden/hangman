@@ -1,13 +1,8 @@
 import React from 'react';
-import './App.css';
-import io from 'socket.io-client';
-import Letters from "./components/letters/Letters"
-
-//Connect to backend url
-const socket = io.connect('/');
+import './App.scss';
+import Letters from './components/letters/Letters';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home, Multiplayer, Singleplayer } from './pages';
-
 
 function App() {
   return (
