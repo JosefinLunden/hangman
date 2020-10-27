@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
+const game = require('./game');
 
 //Port from environment variable or default 8080
 const port = process.env.PORT || 8080;
@@ -24,9 +25,10 @@ app.get('/hangman', function (req, res) {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 // })
 
-//Handle a socket connection request from client
+//Handle a socket connection request from client ---> run initGame (game.js)
 io.on('connection', (socket) => {
-  console.log('New client connected');
+  console.log('client connected');
+  game.initGame(io, socket);
 });
 
 //Start server
