@@ -1,8 +1,21 @@
 import React from "react";
+import './Home.css';
+import Background from './background';
+
+
+
 
 export const Home = () => (
   <>
-    <h1>Home</h1>
+    
+      <Background />
+
+ 
+      
+    
+      
+    
+    
   </>
 );
 
