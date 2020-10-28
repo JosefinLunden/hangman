@@ -1,4 +1,3 @@
-//Obs, this is only for basic logic set up so far. No correct elements, styling validation, etc. have been added yet.
 import React, {useState} from 'react';
 const axios = require('axios').default;
 
