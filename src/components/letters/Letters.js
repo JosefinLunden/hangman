@@ -35,7 +35,9 @@ const Letters = () => {
     <div className="letter-wrapper">
       <div className="letter-container">
         {alphabet.map((letter) => (
-          <div className="letter-icons">{letter}</div>
+          <div className="letter-icons" key={letter}>
+            {letter}
+          </div>
         ))}
       </div>
     </div>
