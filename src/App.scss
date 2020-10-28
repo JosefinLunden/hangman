@@ -1,2 +1,55 @@
 /* Import custom Bootstrap on the main Sass file.*/
 @import 'custom';
+
+
+body {
+  background-color: rgb(0, 25, 46);
+}
+main {
+  position: relative;
+  z-index: 2;
+}
+svg { 
+  position: absolute;; 
+  top:0; 
+  left:0; 
+  height:100%; 
+  width:100%;
+  background-image: linear-gradient(180deg,rgb(0,25,46) 90%, black 20%);
+  z-index: 0;
+}
+
+#bat-one {
+  animation: bat 1s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+#left-pumpkin-mouth {
+  animation: mouth 0.7s ease-in-out infinite alternate;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+#bat-two {
+  animation: bat 0.7s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+@keyframes bat {
+  from {
+    transform: rotateX(15deg);
+  }
+  to {
+    transform:rotateX(10deg);
+  }
+}
+
+@keyframes mouth {
+  from {
+    transform: scaleY(0.8)
+  }
+  to {
+    transform: scaleY(1.1)
+  }
+}
+
+
