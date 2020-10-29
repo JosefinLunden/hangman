@@ -1,11 +1,24 @@
+h1 {
+  text-align:center;
+  padding:20px;
+  
+}
 .letter-wrapper {
   width: 25vw;
   margin: 5vw;
   padding: 1rem;
 }
-
+@media (max-width: 700px) {
+  .letter-wrapper {
+    margin:0;
+  }
+  .letter-icons {
+    height: 10px !important;
+    
+  }
+}
 .letter-container {
-  margin-top: 1vw;
+  margin-top: 2vw;
   display: grid;
   grid-template-columns: repeat(6, auto);
   grid-template-rows: repeat(4, auto);
@@ -25,4 +38,8 @@
 
 .letter-icons:hover {
   cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
