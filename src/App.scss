@@ -72,3 +72,17 @@ svg {
   font-family: 'Creepster', cursive !important;
   letter-spacing: 2px;
 }
+
+// Styling line-divs
+.word {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+}
+.line {
+  height: 2rem;
+  width: 2rem;
+  border-bottom: 3px solid whitesmoke;
+  margin: 2rem 0.3rem 1rem 0.3rem;
+}
