@@ -7,7 +7,7 @@ import '../App.scss';
 export const Background = () => (
   <>
     
-    <svg viewBox="0 0 1637 1162" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className="svg-background" viewBox="0 0 1637 1162" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="MacBook Pro - 2" clipPath="url(#clip0)">
 <rect width="100%" height="100%" fill="0, 25, 46"/>
 <g id="Group">
