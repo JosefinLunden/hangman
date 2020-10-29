@@ -2,12 +2,11 @@ import React from 'react';
 import './App.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home, Multiplayer, Singleplayer } from './pages';
-import Background from './components/background';
+
 
 function App() {
   return (
     <div className="App">
-      <Background />
       <main>
         <Router>
           <Switch>
