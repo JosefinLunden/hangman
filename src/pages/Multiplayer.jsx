@@ -1,5 +1,5 @@
 import React from 'react';
-import RenderWordLines from '../components/RenderWordLines'
+import WordDiv from '../components/WordDiv';
 import Letters from '../components/letters/Letters';
 import PlayBackground from '../components/PlayBackground';
 import Cauldron from '../components/Cauldron';
@@ -9,9 +9,8 @@ export const Multiplayer = () => (
    <>
    <PlayBackground />
    <main>
-   
      <h1 className=" font-eater text-white ">Multiplayer</h1>
-     <RenderWordLines />
+     <WordDiv />
      <Letters />
      <Skeleton />
      <Cauldron />

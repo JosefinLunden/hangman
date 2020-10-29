@@ -22,7 +22,7 @@ app.get('/hangman', function (req, res) {
 });
 
 // Backend route to get random word from API
-app.use('/api/getword', getWord);
+app.get('/api/getword', getWord);
 
 //Enter Heroku - app routes through url
 // app.get('/*', function (req, res) {
