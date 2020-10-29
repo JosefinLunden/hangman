@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Background from '../components/background';
 import '../App.scss';
+import NewMultiGameButton from '../components/NewMultiGameButton';
 
 
 export const Home = () => (
@@ -10,14 +11,18 @@ export const Home = () => (
   <Background />
   <main
     style={{ height: '100vh'}}
-    class="d-flex flex-column justify-content-center align-items-center"
-  >
-    <h1 class=" font-eater text-white">Super Guardians Hangman</h1>
-    <div class="my-5">
-      {/* Buttons only for visualization, change to components later */}
-      <Button variant="primary">Start new game</Button>{' '}
-      <Button variant="primary">Rules</Button>{' '}
+    class="d-flex flex-column justify-content-center align-items-center">
+    <h1 className="text-center font-eater text-white">
+      Super Guardians Hangman
+    </h1>
+    <div className="my-5">
+      <NewMultiGameButton />{' '}
+      <Button href="/singleplayer" variant="primary">
+        New Singlegame
+      </Button>
     </div>
+  <Button variant="info">Rules</Button>
   </main>
   </>
+
 );
