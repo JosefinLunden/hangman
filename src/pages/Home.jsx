@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import Background from '../components/background';
+import Background from '../components/Background';
 import '../App.scss';
 import NewMultiGameButton from '../components/NewMultiGameButton';
 

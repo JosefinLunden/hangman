@@ -1,11 +1,21 @@
 import React from 'react';
 import RenderWordLines from '../components/RenderWordLines'
 import Letters from '../components/letters/Letters';
+import PlayBackground from '../components/PlayBackground';
+import Cauldron from '../components/Cauldron';
+import Skeleton from '../components/Skeleton';
 
 export const Multiplayer = () => (
-  <>
-    <h1>Multiplayer</h1>
-    <RenderWordLines />
-    <Letters />
-  </>
+   <>
+   <PlayBackground />
+   <main>
+   
+     <h1 className=" font-eater text-white ">Multiplayer</h1>
+     <RenderWordLines />
+     <Letters />
+     <Skeleton />
+     <Cauldron />
+     </main>
+     
+   </>
 );
