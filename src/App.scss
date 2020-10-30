@@ -19,12 +19,12 @@ body {
   background-color: rgb(0, 25, 46);
 }
 
-// Main content above background
 main {
   height: 100vh;
   position: relative;
   z-index: 2;
 }
+
 .svg-background {
   position: absolute;
   top: 0;
@@ -161,7 +161,7 @@ main {
   }
 }
 
-//Global button styling (Bootstrap)
+//Bootstrap styling
 .btn {
   font-family: 'Creepster', cursive !important;
   letter-spacing: 2px;
