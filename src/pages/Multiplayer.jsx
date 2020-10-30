@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import WordDiv from '../components/WordDiv';
 import Letters from '../components/letters/Letters';
 import StartNewMultigameModal from '../components/StartNewMultigameModal';
-import WordDiv from '../components/WordDiv';
 import PlayBackground from '../components/PlayBackground';
 import Cauldron from '../components/Cauldron';
 import Skeleton from '../components/Skeleton';
+import InfoModal from '../components/infoModal/InfoModal';
+import Button from 'react-bootstrap/Button';
 
-export const Multiplayer = () => (
-  <>
-    <PlayBackground />
-    <main>
-      <h1 className=" font-eater text-white ">Multiplayer</h1>
+export const Multiplayer = () => {
+  const [modalShow, setModalShow] = useState(false);
+  return (
+    <>
+      <PlayBackground />
+      <main>
+        <h1 className=" font-eater text-white ">Multiplayer</h1>
+        <WordDiv />
+        <Letters />
+        <Button variant="info" onClick={() => setModalShow(true)}>
+          Rules
+        </Button>
+        <Skeleton />
+        <Cauldron />
+      </main>
+
       <StartNewMultigameModal />
-      <WordDiv />
-      <Letters />
-      <Skeleton />
-      <Cauldron />
-    </main>
-  </>
-);
+      <InfoModal show={modalShow} handleClose={() => setModalShow(false)} />
+    </>
+  );
+};

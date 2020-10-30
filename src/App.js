@@ -3,7 +3,6 @@ import './App.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home, Multiplayer, Singleplayer } from './pages';
 
-
 function App() {
   return (
     <div className="App">
