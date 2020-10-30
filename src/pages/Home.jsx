@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import InfoModal from "../components/infoModal/InfoModal"
 import Background from '../components/Background';
-import '../App.scss';
 import NewMultiGameButton from '../components/NewMultiGameButton';
 
+export const Home = () => {
 
-export const Home = () => (
-  // Flex properties with Bootstrap utilities
+  const [modalShow, setModalShow] = useState(false);
+  return(
   <>
-  <Background />
+ <Background />
   <main
     style={{ height: '100vh'}}
     class="d-flex flex-column justify-content-center align-items-center">
@@ -21,8 +22,18 @@ export const Home = () => (
         New Singlegame
       </Button>
     </div>
-  <Button variant="info">Rules</Button>
+  <Button variant="info"  onClick={() => setModalShow(true)}>Rules</Button>
   </main>
-  </>
 
-);
+  
+  <InfoModal
+    show={modalShow}
+    handleClose={() => setModalShow(false)}
+    header={"Game Rules"}
+    body={
+    "The objective of the game Hangman is to guess the word!"}
+  />
+    </>
+  )
+};
+    

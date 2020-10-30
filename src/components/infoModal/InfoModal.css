@@ -1,0 +1,13 @@
+.modalTitle {
+  font-size: 2rem;
+  font-family: Creepster;
+}
+
+.modalText {
+  padding: 15px;
+  font-family: Roboto;
+}
+
+.modalBg {
+  background-color: #00000089;
+}
