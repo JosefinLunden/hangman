@@ -11,7 +11,7 @@ function App() {
       <main>
         <Router>
           <Switch>
-            <Route path="/multiplayer">
+            <Route path="/multiplayer/:gameId">
               <Multiplayer />
             </Route>
             <Route path="/singleplayer">
