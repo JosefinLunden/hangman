@@ -1,13 +1,17 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import Background from '../components/Background';
+import '../App.scss';
 import NewMultiGameButton from '../components/NewMultiGameButton';
+
 
 export const Home = () => (
   // Flex properties with Bootstrap utilities
-  <section
-    style={{ height: '100vh' }}
-    className="d-flex flex-column justify-content-center align-items-center"
-  >
+  <>
+  <Background />
+  <main
+    style={{ height: '100vh'}}
+    class="d-flex flex-column justify-content-center align-items-center">
     <h1 className="text-center font-eater text-white">
       Super Guardians Hangman
     </h1>
@@ -17,6 +21,8 @@ export const Home = () => (
         New Singlegame
       </Button>
     </div>
-    <Button variant="info">Rules</Button>
-  </section>
+  <Button variant="info">Rules</Button>
+  </main>
+  </>
+
 );

@@ -2,12 +2,14 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Redirect, useParams, useLocation } from 'react-router-dom';
 
 // Import Bootstrap components
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import Overlay from 'react-bootstrap/Overlay';
-import Tooltip from 'react-bootstrap/Tooltip';
+import {
+  Modal,
+  Button,
+  InputGroup,
+  FormControl,
+  Overlay,
+  Tooltip,
+} from 'react-bootstrap';
 
 // Import React-icons
 import { GiGhost } from 'react-icons/gi';

@@ -4,7 +4,7 @@ import '../App.scss';
 export const Background = () => (
   <>
     <svg
-      className="background"
+      className="svg-background"
       viewBox="0 0 1637 1162"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
