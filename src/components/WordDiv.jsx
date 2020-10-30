@@ -23,7 +23,7 @@ const WordDiv = () => {
 
   const letterDivs = [];
   for (let i = 0; i < wordLength; i++) {
-    letterDivs.push(<div key={i} className="line" />);
+    letterDivs.push(<div key={i} id={i.toString()} className="line"></div>);
   }
 
   return <div className="word">{letterDivs}</div>;
