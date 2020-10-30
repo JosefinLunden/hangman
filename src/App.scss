@@ -18,13 +18,14 @@
 body {
   background-color: rgb(0, 25, 46);
 }
+
 // Main content above background
 main {
   height: 100vh;
   position: relative;
   z-index: 2;
 }
-svg {
+.background {
   position: absolute;
   top: 0;
   left: 0;
@@ -67,8 +68,16 @@ svg {
   }
 }
 
-//Global button styling (Bootstrap)
+//Global Bootstrap styling
 .btn {
   font-family: 'Creepster', cursive !important;
   letter-spacing: 2px;
+}
+
+.btn-outline-primary {
+  border-color: lightgrey;
+}
+
+.modal-header {
+  background-color: #321291;
 }
