@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home, Multiplayer, Singleplayer } from './pages';
-
 
 function App() {
   return (
@@ -10,7 +9,7 @@ function App() {
       <main>
         <Router>
           <Switch>
-            <Route path="/multiplayer">
+            <Route path="/multiplayer/:gameId">
               <Multiplayer />
             </Route>
             <Route path="/singleplayer">

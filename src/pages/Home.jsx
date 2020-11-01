@@ -11,7 +11,7 @@ export const Home = () => {
       <Background />
       <main
         style={{ height: '100vh' }}
-        class="d-flex flex-column justify-content-center align-items-center"
+        className="d-flex flex-column justify-content-center align-items-center"
       >
         <h1 className="text-center font-eater text-white">
           Super Guardians Hangman

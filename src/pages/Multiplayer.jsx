@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import WordDiv from '../components/WordDiv';
 import Letters from '../components/letters/Letters';
+import StartNewMultigameModal from '../components/StartNewMultigameModal';
 import PlayBackground from '../components/PlayBackground';
 import Cauldron from '../components/Cauldron';
 import Skeleton from '../components/Skeleton';
@@ -23,6 +24,7 @@ export const Multiplayer = () => {
         <Cauldron />
       </main>
 
+      <StartNewMultigameModal />
       <InfoModal show={modalShow} handleClose={() => setModalShow(false)} />
     </>
   );
