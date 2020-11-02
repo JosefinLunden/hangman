@@ -6,7 +6,7 @@ const socket = io.connect('/');
 let socketId;
 
 //Update socketId from backend
-socket.on('createNewGame', (update) => {
+socket.on('newGameCreated', (update) => {
   socketId = update.socketId;
   console.log(`socketId: ${socketId}`);
 });

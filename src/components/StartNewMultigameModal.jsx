@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Redirect, useParams, useLocation } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router-dom';
 
 // Import Bootstrap components
 import {
@@ -15,9 +15,6 @@ import {
 import { GiGhost } from 'react-icons/gi';
 import { BsLink } from 'react-icons/bs';
 
-//Enable socket-connection
-const socket = require('../socket').socket;
-
 const StartNewMultigameModal = () => {
   const [showStartGameModal, setShowStartGameModal] = useState(false);
   const [userName, setUserName] = useState('');
@@ -25,8 +22,11 @@ const StartNewMultigameModal = () => {
   const [gameCanceled, setGameCanceled] = useState(false);
   const [urlCopied, setUrlCopied] = useState(false);
 
+  //Enable socket-connection
+  const socket = require('../socket').socket;
+
   const url = window.location.href;
-  const gameId = useParams();
+  // const gameId = useParams();
   const location = useLocation();
   const copyUrlLinkButton = useRef(null);
   const urlRef = useRef(null);
@@ -61,8 +61,8 @@ const StartNewMultigameModal = () => {
 
   //Start game
   const startGame = () => {
-    // Emit an event to the server to create a new game room
-    socket.emit('createNewGame', gameId);
+    //Add username to server
+    socket.emit('addUserName', userName);
 
     //Hide modal
     setShowStartGameModal(false);
@@ -70,12 +70,7 @@ const StartNewMultigameModal = () => {
 
   return (
     <>
-      <Modal
-        show={showStartGameModal}
-        onHide={startGame}
-        backdrop="static"
-        keyboard={false}
-      >
+      <Modal show={showStartGameModal} backdrop="static" keyboard={false}>
         <Modal.Header>
           <Modal.Title className="font-eater text-white">
             Welcome to a new game
