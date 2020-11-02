@@ -14,7 +14,7 @@ export const ErrorMessagePlayers = (props) => {
     }
   
   useEffect(() => {
-    socket.on('toManyPlayers', (id) => {
+    socket.on('tooManyPlayers', (id) => {
       if (id === props.userId) {
         setErrorModal(true) 
       }
