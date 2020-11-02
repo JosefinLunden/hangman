@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, useParams, useLocation } from 'react-router-dom';
+import ErrorMessagePlayers from '../components/ErrorMessagePlayers';
+
 
 // Import Bootstrap components
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
@@ -85,6 +87,7 @@ const JoinGameModal = () => {
 
       {/* If game is cancelled before started redirect to homepage */}
       {gameCanceled && <Redirect to={{ pathname: `/` }} />}
+      <ErrorMessagePlayers/>
     </>
   );
 };
