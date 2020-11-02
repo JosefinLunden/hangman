@@ -8,31 +8,33 @@ const url = `https://jsonplaceholder.typicode.com/todos/1`;
 
 const getWord = async (req, res) => {
   try {
-    const response = await axios.get(url);
-    console.log(response.data); // DELETE BEFORE PRODUCTION
-    const randomWord = response.data.title; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
+    //const response = await axios.get(url);
+    //console.log(response.data); // DELETE BEFORE PRODUCTION
+    const randomWord = "this-testword-here"; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
     // const randomWord = response.data.word; // UNCOMMENT THIS LINE
     const wordLength = randomWord.length;
 
-    // TODO: Push game object to games array or other solution to keep track of word during game
-    // let games = [
-    //   {
-    //   'gameid': 'uuid',
-    //   'players': [
-    //     {
-    //       'name': 'bla',
-    //       'guessedLetters': []
-    //     },
-    //     {
-    //       'name': 'bla2',
-    //       'guessedLetters': []
-    //     }
-    //   ],
-    //   'word': 'randomword'
-    //   }
-    // ]
+    let chars = [];
+    console.log(chars)
+    for (let i = 0; i < randomWord.length; i++) {
 
-    const data = { word: randomWord, letters: wordLength }; // Maybe not send word? Instead push word to socket or array in node?
+     // const hyphen= 
+     
+      if (randomWord[i].match(/\-/))
+    // if (randomWord.index.length)
+        chars.push(
+          "-" 
+        );
+      
+     else {
+      chars.push("#")
+    }
+  }
+
+
+  console.log(chars)
+
+    const data = { word: randomWord, charsArray: chars }; // Maybe not send word? Instead push word to socket or array in node?
     res.send(data);
   } catch (error) {
     res.status(500).send(error);

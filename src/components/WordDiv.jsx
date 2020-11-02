@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 const axios = require('axios').default;
 
 const WordDiv = () => {
-  const [wordLength, setWordLength] = useState(null);
+  const [specialChars, setSpecialChars] = useState([]);
 
   // Get wordlength from backend
   useEffect(() => {
@@ -11,9 +11,9 @@ const WordDiv = () => {
 
       try {
         const response = await axios.get(url);
-        let letters = response.data.letters;
-        setWordLength(letters);
-        console.log(response.data.word); // DELETE BEFORE PRODUCTION only to make testing easier
+        let chars = response.data.charsArray;
+        setSpecialChars(chars);
+        console.log(response.data.charsArray); // DELETE BEFORE PRODUCTION only to make testing easier
       } catch (error) {
         console.log('Could not get word because ', error);
       }
@@ -22,7 +22,8 @@ const WordDiv = () => {
   }, []);
 
   const letterDivs = [];
-  for (let i = 0; i < wordLength; i++) {
+  for (let i = 0; i < specialChars.length; i++) {
+    //  if (specialChars.index === i)
     letterDivs.push(<div key={i} id={i.toString()} className="line"></div>);
   }
 
