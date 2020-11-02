@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from 'react';
-const axios = require('axios').default;
+
+//Enable socket-connection
+const socket = require('../socket').socket;
 
 const WordDiv = () => {
   const [specialChars, setSpecialChars] = useState([]);
 
   // Get wordlength from backend
   useEffect(() => {
-    const word = async () => {
-      const url = '/api/getword';
-
-      try {
-        const response = await axios.get(url);
-        let chars = response.data.charsArray;
-        setSpecialChars(chars);
-        console.log(response.data.charsArray); // DELETE BEFORE PRODUCTION only to make testing easier
-      } catch (error) {
-        console.log('Could not get word because ', error);
-      }
-    };
-    word();
+    socket.on('renderWordLength', (charsArray) => {
+      setSpecialChars(charsArray);
+      console.log(charsArray);
+    });
   }, []);
 
   const letterDivs = [];
   for (let i = 0; i < specialChars.length; i++) {
-    //  if (specialChars.index === i)
     letterDivs.push(<div key={i} id={i.toString()} className="line"></div>);
   }
 

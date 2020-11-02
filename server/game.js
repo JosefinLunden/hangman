@@ -1,4 +1,6 @@
 // Event listeners and emitters for socket.io backend are registrated here
+const getWord = require('./getWord');
+
 let io;
 let gameSocket;
 let activeSockets = [];
@@ -41,7 +43,7 @@ const addUserName = (username) => {
 };
 
 // Joins the given socket to a session with it's gameId
-const playerJoinsGame = (userData) => {
+const playerJoinsGame = async (userData) => {
   // Look up the room ID in the Socket.IO manager object.
   let gameRoom = io.sockets.adapter.rooms[userData.gameId];
   console.log(`${userData.username} tries to join: `, { gameRoom });
@@ -56,6 +58,9 @@ const playerJoinsGame = (userData) => {
     return;
   }
   if (gameRoom.length < 2) {
+    //Get word from api
+    let data = await getWord();
+
     // attach the socket id to the userData object.
     userData.mySocketId = gameSocket.id;
 
@@ -64,13 +69,16 @@ const playerJoinsGame = (userData) => {
 
     // Emit an event notifying the clients that the player has joined the room.
     io.sockets.in(userData.gameId).emit('playerTwoJoinedRoom', userData);
-
+    console.log(data)
     console.log(`${userData.username} joined successfully`);
 
     if (gameRoom.length === 2) {
       io.sockets
         .in(userData.gameId)
         .emit('startGame', firstPlayerUsername, userData.username);
+
+      io.sockets.in(userData.gameId).emit('renderWordLength', data.charsArray);
+
       console.log('Let the game begin...');
     }
   } else {

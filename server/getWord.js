@@ -16,16 +16,11 @@ const getWord = async (req, res) => {
 
     let chars = [];
     console.log(chars)
-    for (let i = 0; i < randomWord.length; i++) {
-
-     // const hyphen= 
-     
+    for (let i = 0; i < randomWord.length; i++) { 
       if (randomWord[i].match(/\-/))
-    // if (randomWord.index.length)
         chars.push(
           "-" 
-        );
-      
+        );  
      else {
       chars.push("#")
     }
@@ -34,8 +29,7 @@ const getWord = async (req, res) => {
 
   console.log(chars)
 
-    const data = { word: randomWord, charsArray: chars }; // Maybe not send word? Instead push word to socket or array in node?
-    res.send(data);
+    return { word: randomWord, charsArray: chars }; // Maybe not send word? Instead push word to socket or array in node?
   } catch (error) {
     res.status(500).send(error);
   }
