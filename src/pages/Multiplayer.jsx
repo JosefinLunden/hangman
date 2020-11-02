@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import WordDiv from '../components/WordDiv';
 import Letters from '../components/letters/Letters';
 import StartNewMultigameModal from '../components/StartNewMultigameModal';
+import JoinGameModal from '../components/JoinGameModal';
+import PlayersInfo from '../components/PlayersInfo';
 import PlayBackground from '../components/PlayBackground';
 import Cauldron from '../components/Cauldron';
 import Skeleton from '../components/Skeleton';
@@ -15,9 +17,15 @@ export const Multiplayer = () => {
       <PlayBackground />
       <main>
         <h1 className=" font-eater text-white ">Multiplayer</h1>
+        <PlayersInfo />
         <WordDiv />
         <Letters />
-        <Button variant="info" onClick={() => setModalShow(true)}>
+        <Button
+          className="position-absolute"
+          style={{ bottom: '2rem', right: '2rem' }}
+          variant="info"
+          onClick={() => setModalShow(true)}
+        >
           Rules
         </Button>
         <Skeleton />
@@ -25,6 +33,7 @@ export const Multiplayer = () => {
       </main>
 
       <StartNewMultigameModal />
+      <JoinGameModal />
       <InfoModal show={modalShow} handleClose={() => setModalShow(false)} />
     </>
   );
