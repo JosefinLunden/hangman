@@ -31,7 +31,6 @@ export const Multiplayer = () => {
         <Skeleton />
         <Cauldron />
       </main>
-
       <StartNewMultigameModal />
       <JoinGameModal />
       <InfoModal show={modalShow} handleClose={() => setModalShow(false)} />
