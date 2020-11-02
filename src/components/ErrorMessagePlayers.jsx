@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import { Modal, Button } from 'react-bootstrap';
+
 //Enable socket-connection
 const socket = require('../socket').socket;
 
-export const ErrorMessagePlayers = () => {
+export const ErrorMessagePlayers = (props) => {
   const [showErrorModal, setErrorModal] = useState(false);
   const history = useHistory();
   
-
     const handleClick = () => {
-      history.push("/");
+      history.push('/');
     }
   
   useEffect(() => {
-    socket.on('toManyPlayers', () => {
-      setErrorModal(true) 
+    socket.on('toManyPlayers', (id) => {
+      if (id === props.userId) {
+        setErrorModal(true) 
+      }
+      
     });
-  }, []);
+  }, [props.userId]);
 
   return (
     <>
