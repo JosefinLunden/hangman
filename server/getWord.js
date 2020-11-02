@@ -13,27 +13,7 @@ const getWord = async (req, res) => {
     const randomWord = response.data.title; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
     // const randomWord = response.data.word; // UNCOMMENT THIS LINE
     const wordLength = randomWord.length;
-
-    // TODO: Push game object to games array or other solution to keep track of word during game
-    // let games = [
-    //   {
-    //   'gameid': 'uuid',
-    //   'players': [
-    //     {
-    //       'name': 'bla',
-    //       'guessedLetters': []
-    //     },
-    //     {
-    //       'name': 'bla2',
-    //       'guessedLetters': []
-    //     }
-    //   ],
-    //   'word': 'randomword'
-    //   }
-    // ]
-
-    const data = { word: randomWord, letters: wordLength }; // Maybe not send word? Instead push word to socket or array in node?
-    res.send(data);
+    return { word: randomWord, letters: wordLength };
   } catch (error) {
     res.status(500).send(error);
   }
