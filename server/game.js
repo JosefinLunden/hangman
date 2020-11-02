@@ -69,7 +69,7 @@ const playerJoinsGame = async (userData) => {
 
     // Emit an event notifying the clients that the player has joined the room.
     io.sockets.in(userData.gameId).emit('playerTwoJoinedRoom', userData);
-
+    console.log(data)
     console.log(`${userData.username} joined successfully`);
 
     if (gameRoom.length === 2) {
@@ -77,7 +77,7 @@ const playerJoinsGame = async (userData) => {
         .in(userData.gameId)
         .emit('startGame', firstPlayerUsername, userData.username);
 
-      io.sockets.in(userData.gameId).emit('renderWordLength', data.letters);
+      io.sockets.in(userData.gameId).emit('renderWordLength', data.charsArray);
 
       console.log('Let the game begin...');
     }

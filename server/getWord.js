@@ -8,12 +8,28 @@ const url = `https://jsonplaceholder.typicode.com/todos/1`;
 
 const getWord = async (req, res) => {
   try {
-    const response = await axios.get(url);
-    console.log(response.data); // DELETE BEFORE PRODUCTION
-    const randomWord = response.data.title; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
+    //const response = await axios.get(url);
+    //console.log(response.data); // DELETE BEFORE PRODUCTION
+    const randomWord = "this-testword-here"; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
     // const randomWord = response.data.word; // UNCOMMENT THIS LINE
     const wordLength = randomWord.length;
-    return { word: randomWord, letters: wordLength };
+
+    let chars = [];
+    console.log(chars)
+    for (let i = 0; i < randomWord.length; i++) { 
+      if (randomWord[i].match(/\-/))
+        chars.push(
+          "-" 
+        );  
+     else {
+      chars.push("#")
+    }
+  }
+
+
+  console.log(chars)
+
+    return { word: randomWord, charsArray: chars }; // Maybe not send word? Instead push word to socket or array in node?
   } catch (error) {
     res.status(500).send(error);
   }
