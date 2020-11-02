@@ -83,7 +83,7 @@ const playerJoinsGame = async (userData) => {
     }
   } else {
     // Otherwise, send an error message back to the player.
-    io.emit('toManyPlayers', userData.userId);
+    io.emit('tooManyPlayers', userData.userId);
     
   }
 };
