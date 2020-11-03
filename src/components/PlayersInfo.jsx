@@ -17,26 +17,18 @@ export const PlayersInfo = () => {
   //Get socket events from backend
   useEffect(() => {
     socket.on('playerOneJoinedRoom', (username) => {
-      setPlayerOne((prevState) => {
-        return { ...prevState, username: username };
-      });
+      setPlayerOne((prevState) => ({ ...prevState, username: username }));
     });
 
     socket.on('playerTwoJoinedRoom', (data) => {
-      setPlayerOne((prevState) => {
-        return { ...prevState, username: data.username };
-      });
+      setPlayerOne((prevState) => ({ ...prevState, username: data.username }));
     });
 
     socket.on('startGame', (firstPlayer, secondPlayer) => {
-      setPlayerOne((prevState) => {
-        return { ...prevState, username: firstPlayer };
-      });
-      setPlayerTwo((prevState) => {
-        return { ...prevState, username: secondPlayer };
-      });
+      setPlayerOne((prevState) => ({ ...prevState, username: firstPlayer }));
+      setPlayerTwo((prevState) => ({ ...prevState, username: secondPlayer }));
     });
-  }, []);
+  }, [setPlayerOne, setPlayerTwo]);
 
   return (
     <>
