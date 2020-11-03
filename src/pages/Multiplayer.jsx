@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import WordDiv from '../components/WordDiv';
-import Letters from '../components/letters/Letters';
+import Letters from '../components/letters/Letters.jsx';
 import StartNewMultigameModal from '../components/StartNewMultigameModal';
 import JoinGameModal from '../components/JoinGameModal';
 import PlayersInfo from '../components/PlayersInfo';
@@ -19,7 +19,7 @@ export const Multiplayer = () => {
       <main>
         <h1
           className="font-eater text-white position-relative"
-          style={{ zIndex: '5' }}
+          style={{ zIndex: 5 }}
         >
           Multiplayer
         </h1>
@@ -29,7 +29,7 @@ export const Multiplayer = () => {
         <Letters />
         <Button
           className="position-absolute"
-          style={{ bottom: '2rem', right: '2rem', zIndex: '5' }}
+          style={{ bottom: '2rem', right: '2rem', zIndex: 5 }}
           variant="info"
           onClick={() => setModalShow(true)}
         >

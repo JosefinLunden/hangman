@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import WordDiv from '../components/WordDiv';
-import Letters from '../components/letters/Letters';
+import Letters from '../components/letters/Letters.jsx';
 import PlayBackground from '../components/PlayBackground';
 import Cauldron from '../components/Cauldron';
 import Skeleton from '../components/Skeleton';
