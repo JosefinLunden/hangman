@@ -29,14 +29,16 @@ export const PlayersInfo = () => {
 
   return (
     <>
-      <div className="position-absolute" style={{ top: '2rem', left: '2rem' }}>
+      <div
+        className="position-absolute"
+        style={{ top: '2rem', left: '2rem', zIndex: '5' }}
+      >
         <p className="text-white mb-2">
           <IoIosRadioButtonOn
             className="mb-1"
             style={playerOne.length > 0 ? { fill: 'green' } : { fill: 'red' }}
           />{' '}
-          {playerOne.length > 0 ? playerOne : 'Player One (not connected)'}{' '}
-          {/* map later */}
+          {playerOne.length > 0 ? playerOne : 'Player One'} {/* map later */}
           <GiPumpkin className="mb-1" style={{ fill: 'orange' }} />{' '}
           <GiPumpkin className="mb-1" style={{ fill: 'orange' }} />{' '}
           <GiPumpkin className="mb-1" style={{ fill: 'orange' }} />{' '}
@@ -50,8 +52,7 @@ export const PlayersInfo = () => {
             className="mb-1"
             style={playerTwo.length > 0 ? { fill: 'green' } : { fill: 'red' }}
           />{' '}
-          {playerTwo.length > 0 ? playerTwo : 'Player Two (not connected)'}{' '}
-          {/* map later */}
+          {playerTwo.length > 0 ? playerTwo : 'Player Two'} {/* map later */}
           <GiPumpkin className="mb-1" style={{ fill: 'orange' }} />{' '}
           <GiPumpkin className="mb-1" style={{ fill: 'orange' }} />{' '}
           <GiPumpkin className="mb-1" style={{ fill: 'orange' }} />{' '}
