@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './Letters.css';
 
+//Enable socket-connection
+const socket = require('../../socket').socket;
+
 const Letters = () => {
   const alphabet = [
     'A',
@@ -31,25 +34,25 @@ const Letters = () => {
     'Z',
   ];
 
-  
   const [guesses, setGuesses] = useState([]);
- 
-    const checkLetter = (e) => {
-      const letter = e.target.value;
-      console.log(letter);
-      return setGuesses(guesses.concat(letter)); 
-    };
 
-    
+  const checkLetter = (e) => {
+    let letter = e.target.value;
+    socket.emit('guessLetter', letter);
+    console.log(letter);
+    return setGuesses(guesses.concat(letter));
+  };
+
   return (
     <div className="letter-wrapper">
       <div className="letter-container">
         {alphabet.map((letter) => (
-          <button className="letter-icons btn btn-lg btn-primary m-2" 
-          key={letter}
-          value={letter}
-          onClick={checkLetter}
-          disabled={guesses.includes(letter) ? true : false}
+          <button
+            className="letter-icons btn btn-lg btn-primary m-2"
+            key={letter}
+            value={letter}
+            onClick={checkLetter}
+            disabled={guesses.includes(letter) ? true : false}
           >
             {letter}
           </button>
@@ -57,14 +60,6 @@ const Letters = () => {
       </div>
     </div>
   );
-
-
-  
-   
-  
-
-
-
 };
 
 export default Letters;

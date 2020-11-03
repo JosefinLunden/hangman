@@ -1,11 +1,14 @@
 // Event listeners and emitters for socket.io backend are registrated here
 const getWord = require('./getWord');
+const checkLetter = require('./checkLetter');
 
 let io;
 let gameSocket;
 let activeSockets = [];
 //First player
 let firstPlayerUsername;
+// Object returned after running getWord function
+let data;
 
 //Sets up all the socket event listeners
 const initGame = (sIo, socket) => {
@@ -19,11 +22,14 @@ const initGame = (sIo, socket) => {
   // User creates new game room after clicking on new multigame on homepage
   gameSocket.on('createNewGame', createNewGame);
 
-  // User adds an username after clicking on start button on start game modal
+  // User adds a username after clicking on start button on start game modal
   gameSocket.on('addUserName', addUserName);
 
   // Player joins gameRoom after going to a URL with '/game/:gameId' and enter username
   gameSocket.on('playerJoinsGame', playerJoinsGame);
+
+  // Guessed letter is checked against word in backend
+  gameSocket.on('guessLetter', guessLetter);
 };
 
 const createNewGame = (gameId) => {
@@ -42,6 +48,17 @@ const addUserName = (username) => {
   firstPlayerUsername = username;
 };
 
+const guessLetter = async (letter, word) => {
+  try {
+    word = data.word;
+    let match = await checkLetter(letter, word);
+    console.log(`Match object: ${match}`);
+    io.emit('letterChecked', match);
+  } catch (error) {
+    return `Couldn't check guessed letter because ${error}`;
+  }
+};
+
 // Joins the given socket to a session with it's gameId
 const playerJoinsGame = async (userData) => {
   // Look up the room ID in the Socket.IO manager object.
@@ -50,16 +67,13 @@ const playerJoinsGame = async (userData) => {
 
   //Check if the room exists...
   if (gameRoom === undefined) {
-    io.emit(
-      'undefined',
-      'It seems like this game session does no longer exist.'
-    );
+    io.emit('undefined', 'It seems like this game session no longer exists.');
     console.log('gameRoom is undefined');
     return;
   }
   if (gameRoom.length < 2) {
     //Get word from api
-    let data = await getWord();
+    data = await getWord();
 
     // attach the socket id to the userData object.
     userData.mySocketId = gameSocket.id;
@@ -69,7 +83,7 @@ const playerJoinsGame = async (userData) => {
 
     // Emit an event notifying the clients that the player has joined the room.
     io.sockets.in(userData.gameId).emit('playerTwoJoinedRoom', userData);
-    console.log(data)
+    console.log(data);
     console.log(`${userData.username} joined successfully`);
 
     if (gameRoom.length === 2) {
@@ -78,13 +92,10 @@ const playerJoinsGame = async (userData) => {
         .emit('startGame', firstPlayerUsername, userData.username);
 
       io.sockets.in(userData.gameId).emit('renderWordLength', data.charsArray);
-
-      console.log('Let the game begin...');
     }
   } else {
     // Otherwise, send an error message back to the player.
     io.emit('tooManyPlayers', userData.userId);
-    
   }
 };
 
