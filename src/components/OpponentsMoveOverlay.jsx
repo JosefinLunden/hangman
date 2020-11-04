@@ -36,7 +36,7 @@ const OpponentsMoveOverlay = () => {
             height: '100vh',
             width: '100vw',
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            zIndex: '3',
+            zIndex: 3,
           }}
         >
           {/* Todo: get opponent name from context api */}

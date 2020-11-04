@@ -12,17 +12,15 @@ const getWord = async (req, res) => {
     //console.log(response.data); // DELETE BEFORE PRODUCTION
     const randomWord = 'this-testword-here'; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
     // const randomWord = response.data.word; // UNCOMMENT THIS LINE
-    const wordLength = randomWord.length;
 
     let chars = [];
-    console.log(chars);
     for (let i = 0; i < randomWord.length; i++) {
       if (randomWord[i].match(/\-/)) {
         chars.push('-');
       } else if (randomWord[i].match(/\s/)) {
         chars.push(' ');
       } else {
-        chars.push('#');
+        chars.push('');
       }
     }
 
