@@ -40,7 +40,7 @@ const Letters = () => {
     let letter = e.target.value;
     socket.emit('guessLetter', letter);
     console.log(letter);
-    return setGuesses(guesses.concat(letter));
+    return setGuesses(guesses.push(letter));
   };
 
   return (
