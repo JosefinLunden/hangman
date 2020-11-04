@@ -1,11 +1,14 @@
 // Event listeners and emitters for socket.io backend are registrated here
 const getWord = require('./getWord');
+const checkLetter = require('./checkLetter');
 
 let io;
 let gameSocket;
 let activeSockets = [];
 //First player
 let firstPlayerUsername;
+// Object returned after running getWord function
+let data;
 
 //Sets up all the socket event listeners
 const initGame = (sIo, socket) => {
@@ -19,11 +22,14 @@ const initGame = (sIo, socket) => {
   // User creates new game room after clicking on new multigame on homepage
   gameSocket.on('createNewGame', createNewGame);
 
-  // User adds an username after clicking on start button on start game modal
+  // User adds a username after clicking on start button on start game modal
   gameSocket.on('addUserName', addUserName);
 
   // Player joins gameRoom after going to a URL with '/game/:gameId' and enter username
   gameSocket.on('playerJoinsGame', playerJoinsGame);
+
+  // Guessed letter is checked against word in backend
+  gameSocket.on('guessLetter', guessLetter);
 };
 
 const createNewGame = (gameId) => {
@@ -42,6 +48,18 @@ const addUserName = (username) => {
   firstPlayerUsername = username;
 };
 
+const guessLetter = async (letter, word) => {
+  try {
+    word = data.word;
+    let match = await checkLetter(letter, word);
+    console.log(match);
+    console.log(letter + ' ' + match.foundMatches);
+    gameSocket.emit('letterChecked', match);
+  } catch (error) {
+    return `Couldn't check guessed letter because ${error}`;
+  }
+};
+
 // Joins the given socket to a session with it's gameId
 const playerJoinsGame = async (userData) => {
   // Look up the room ID in the Socket.IO manager object.
@@ -56,7 +74,7 @@ const playerJoinsGame = async (userData) => {
   }
   if (gameRoom.length < 2) {
     //Get word from api
-    let data = await getWord();
+    data = await getWord();
 
     // attach the socket id to the userData object.
     userData.mySocketId = gameSocket.id;
@@ -75,8 +93,6 @@ const playerJoinsGame = async (userData) => {
         .emit('startGame', firstPlayerUsername, userData.username);
 
       io.sockets.in(userData.gameId).emit('renderWordLength', data.charsArray);
-
-      console.log('Let the game begin...');
     }
   } else {
     // Otherwise, send an error message back to the player.
