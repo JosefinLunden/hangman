@@ -83,11 +83,8 @@ const playerJoinsGame = async (userData) => {
     }
   } else {
     // Otherwise, send an error message back to the player.
-    io.emit(
-      'toManyPlayers',
-      'There are already two people playing in this room.'
-    );
-    console.log('There are already two people playing in this room.');
+    io.emit('tooManyPlayers', userData.userId);
+    
   }
 };
 

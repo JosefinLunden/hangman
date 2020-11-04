@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, useParams, useLocation } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+import ErrorMessagePlayers from '../components/ErrorMessagePlayers';
+
 
 // Import Bootstrap components
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
@@ -21,6 +24,7 @@ const JoinGameModal = () => {
   //userData to send to backend
   const userData = {
     gameId: useParams().gameId,
+    userId: uuidv4(),
     username: username,
     isCreator: false,
   };
@@ -85,6 +89,7 @@ const JoinGameModal = () => {
 
       {/* If game is cancelled before started redirect to homepage */}
       {gameCanceled && <Redirect to={{ pathname: `/` }} />}
+      <ErrorMessagePlayers userId={userData.userId}/>
     </>
   );
 };
