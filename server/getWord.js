@@ -10,7 +10,7 @@ const getWord = async (req, res) => {
   try {
     //const response = await axios.get(url);
     //console.log(response.data); // DELETE BEFORE PRODUCTION
-    const randomWord = 'this-testword-here'; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
+    const randomWord = 'this test-word'; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
     // const randomWord = response.data.word; // UNCOMMENT THIS LINE
 
     let chars = [];

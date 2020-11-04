@@ -35,11 +35,19 @@ const WordDiv = () => {
 
   const letterDivs = [];
   for (let i = 0; i < chars.length; i++) {
-    letterDivs.push(
-      <div key={i} id={i.toString()} className="line">
-        {chars[i]}
-      </div>
-    );
+    if (chars[i] === ' ') {
+      letterDivs.push(
+        <div key={i} id={i.toString()} className="noline">
+          {chars[i]}
+        </div>
+      );
+    } else {
+      letterDivs.push(
+        <div key={i} id={i.toString()} className="line">
+          {chars[i]}
+        </div>
+      );
+    }
   }
 
   return <div className="word">{letterDivs}</div>;
