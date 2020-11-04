@@ -1,45 +1,47 @@
 // Event listeners and emitters for socket.io backend are registrated here
 const getWord = require('./getWord');
 
+//Global variables
 let io;
-let gameSocket;
+let socket;
 let activeSockets = [];
-//First player
-let firstPlayerUsername;
+
+//Creator
+let creatorUsername;
 
 //Sets up all the socket event listeners
-const initGame = (sIo, socket) => {
+const initGame = (inputIo, inputSocket) => {
   // Set global variables
-  io = sIo;
-  gameSocket = socket;
+  io = inputIo;
+  socket = inputSocket;
 
   // Pushes the current socket to an array which stores all the active sockets.
-  activeSockets.push(gameSocket);
+  activeSockets.push(socket);
 
   // User creates new game room after clicking on new multigame on homepage
-  gameSocket.on('createNewGame', createNewGame);
+  socket.on('createNewGame', createNewGame);
 
   // User adds an username after clicking on start button on start game modal
-  gameSocket.on('addUserName', addUserName);
+  socket.on('addUserName', addUserName);
 
   // Player joins gameRoom after going to a URL with '/game/:gameId' and enter username
-  gameSocket.on('playerJoinsGame', playerJoinsGame);
+  socket.on('playerJoinsGame', playerJoinsGame);
 };
 
 const createNewGame = (gameId) => {
   // Return the game ID and the socket ID to the browser client
-  io.emit('newGameCreated', { gameId, socketId: gameSocket.id });
-  console.log('A new game is created: ', { gameId, socketId: gameSocket.id });
+  io.emit('newGameCreated', gameId);
+  console.log('A new game is created: ', { gameId, creatorId: socket.id });
 
   // Join the Room and wait for the other player
-  gameSocket.join(gameId);
+  socket.join(gameId);
 };
 
 const addUserName = (username) => {
   // Return the username to the browser client
   io.emit('playerOneJoinedRoom', username);
   console.log(`${username} is now connected and ready to play`);
-  firstPlayerUsername = username;
+  creatorUsername = username;
 };
 
 // Joins the given socket to a session with it's gameId
@@ -59,20 +61,22 @@ const playerJoinsGame = async (userData) => {
     let data = await getWord();
 
     // attach the socket id to the userData object.
-    userData.mySocketId = gameSocket.id;
+    userData.mySocketId = socket.id;
 
     // Join the gameRoom
-    gameSocket.join(userData.gameId);
+    socket.join(userData.gameId);
 
     // Emit an event notifying the clients that the player has joined the room.
     io.sockets.in(userData.gameId).emit('playerTwoJoinedRoom', userData);
+    // socket.emit('playerTwoJoinedRoom', userData);
+
     console.log(data);
     console.log(`${userData.username} joined successfully`);
 
     if (gameRoom.length === 2) {
       io.sockets
         .in(userData.gameId)
-        .emit('startGame', firstPlayerUsername, userData.username);
+        .emit('startGame', creatorUsername, userData.username);
 
       io.sockets.in(userData.gameId).emit('renderWordLength', data.charsArray);
 
