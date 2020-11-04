@@ -50,10 +50,7 @@ const playerJoinsGame = async (userData) => {
 
   //Check if the room exists...
   if (gameRoom === undefined) {
-    io.emit(
-      'undefined',
-      'It seems like this game session does no longer exist.'
-    );
+    io.emit('undefined');
     console.log('gameRoom is undefined');
     return;
   }
@@ -69,7 +66,7 @@ const playerJoinsGame = async (userData) => {
 
     // Emit an event notifying the clients that the player has joined the room.
     io.sockets.in(userData.gameId).emit('playerTwoJoinedRoom', userData);
-    console.log(data)
+    console.log(data);
     console.log(`${userData.username} joined successfully`);
 
     if (gameRoom.length === 2) {
@@ -84,7 +81,6 @@ const playerJoinsGame = async (userData) => {
   } else {
     // Otherwise, send an error message back to the player.
     io.emit('tooManyPlayers', userData.userId);
-    
   }
 };
 
