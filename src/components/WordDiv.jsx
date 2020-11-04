@@ -36,12 +36,16 @@ const WordDiv = () => {
   const letterDivs = [];
   for (let i = 0; i < chars.length; i++) {
     letterDivs.push(
-      <div key={i} id={i.toString()} className="line">
+      <div
+        key={i}
+        id={i.toString()}
+        // Change classname when there's a space in the word
+        className={chars[i] === ' ' ? 'noline' : 'line'}
+      >
         {chars[i]}
       </div>
     );
   }
-
   return <div className="word">{letterDivs}</div>;
 };
 

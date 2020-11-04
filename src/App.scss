@@ -189,7 +189,14 @@ main {
   display: flex;
   justify-content: center;
   width: 2rem;
-  border-bottom: 3px solid whitesmoke;
+  border-bottom: 3px solid black;
   margin: 2rem 0.3rem 1rem 0.3rem;
   // align-items: center;
+}
+
+.noline {
+  display: flex;
+  justify-content: center;
+  width: 2rem;
+  margin: 2rem 0.3rem 1rem 0.3rem;
 }
