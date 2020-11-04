@@ -10,24 +10,23 @@ const getWord = async (req, res) => {
   try {
     //const response = await axios.get(url);
     //console.log(response.data); // DELETE BEFORE PRODUCTION
-    const randomWord = "this-testword-here"; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
+    const randomWord = 'this-testword-here'; // DELETE BEFORE PRODUCTION Development API-call to make less requests to Wordnik
     // const randomWord = response.data.word; // UNCOMMENT THIS LINE
     const wordLength = randomWord.length;
 
     let chars = [];
-    console.log(chars)
-    for (let i = 0; i < randomWord.length; i++) { 
-      if (randomWord[i].match(/\-/))
-        chars.push(
-          "-" 
-        );  
-     else {
-      chars.push("#")
+    console.log(chars);
+    for (let i = 0; i < randomWord.length; i++) {
+      if (randomWord[i].match(/\-/)) {
+        chars.push('-');
+      } else if (randomWord[i].match(/\s/)) {
+        chars.push(' ');
+      } else {
+        chars.push('#');
+      }
     }
-  }
 
-
-  console.log(chars)
+    console.log(chars);
 
     return { word: randomWord, charsArray: chars }; // Maybe not send word? Instead push word to socket or array in node?
   } catch (error) {
