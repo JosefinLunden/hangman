@@ -52,8 +52,9 @@ const guessLetter = async (letter, word) => {
   try {
     word = data.word;
     let match = await checkLetter(letter, word);
-    console.log(`Match object: ${match}`);
-    io.emit('letterChecked', match);
+    console.log(match);
+    console.log(letter + ' ' + match.foundMatches);
+    gameSocket.emit('letterChecked', match);
   } catch (error) {
     return `Couldn't check guessed letter because ${error}`;
   }
