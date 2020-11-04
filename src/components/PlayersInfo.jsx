@@ -1,34 +1,15 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { GameContext } from '../GameContext';
 
 //React-icons
 import { IoIosRadioButtonOn } from 'react-icons/io';
 import { GiPumpkin } from 'react-icons/gi';
 
-//Enable socket-connection
-const socket = require('../socket').socket;
-
 export const PlayersInfo = () => {
   //Get states from GameContext
   const { playerOneContext, playerTwoContext } = useContext(GameContext);
-  const [playerOne, setPlayerOne] = playerOneContext;
-  const [playerTwo, setPlayerTwo] = playerTwoContext;
-
-  //Get socket events from backend
-  useEffect(() => {
-    socket.on('playerOneJoinedRoom', (username) => {
-      setPlayerOne((prevState) => ({ ...prevState, username: username }));
-    });
-
-    socket.on('playerTwoJoinedRoom', (data) => {
-      setPlayerOne((prevState) => ({ ...prevState, username: data.username }));
-    });
-
-    socket.on('startGame', (firstPlayer, secondPlayer) => {
-      setPlayerOne((prevState) => ({ ...prevState, username: firstPlayer }));
-      setPlayerTwo((prevState) => ({ ...prevState, username: secondPlayer }));
-    });
-  }, [setPlayerOne, setPlayerTwo]);
+  const [playerOne] = playerOneContext;
+  const [playerTwo] = playerTwoContext;
 
   return (
     <>
@@ -41,13 +22,9 @@ export const PlayersInfo = () => {
           {/* Player connected or not */}
           <IoIosRadioButtonOn
             className="mb-1"
-            style={
-              playerOne.username.length > 0
-                ? { fill: 'green' }
-                : { fill: 'red' }
-            }
+            style={playerOne.connected ? { fill: 'green' } : { fill: 'red' }}
           />{' '}
-          {playerOne.username.length > 0 ? playerOne.username : 'Player One'}{' '}
+          {playerOne.connected ? playerOne.username : 'Player One'}{' '}
           {/* Lives left (orange pumpkins) */}
           {[...Array(playerOne.lives)].map((pumpkin, i) => {
             return (
@@ -75,13 +52,9 @@ export const PlayersInfo = () => {
           {/* Player connected or not */}
           <IoIosRadioButtonOn
             className="mb-1"
-            style={
-              playerTwo.username.length > 0
-                ? { fill: 'green' }
-                : { fill: 'red' }
-            }
+            style={playerTwo.connected ? { fill: 'green' } : { fill: 'red' }}
           />{' '}
-          {playerTwo.username.length > 0 ? playerTwo.username : 'Player Two'}{' '}
+          {playerTwo.connected > 0 ? playerTwo.username : 'Player Two'}{' '}
           {/* Lives left (orange pumpkins) */}
           {[...Array(playerTwo.lives)].map((pumpkin, i) => {
             return (
