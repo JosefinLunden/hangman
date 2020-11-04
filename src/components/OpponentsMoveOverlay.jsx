@@ -1,36 +1,53 @@
-import React, { useState } from 'react';
-import Spinner from 'react-bootstrap/Spinner';
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import { GameContext } from '../GameContext';
 
+//Show overlay when opponent is making a move
 const OpponentsMoveOverlay = () => {
-  // Set to true to test overlay
-  const [opponentsMove, setOpponentsMove] = useState(false);
+  const location = useLocation();
+  const [opponentsMoveOverlay, setOpponentsMoveOverlay] = useState(false);
+
+  //Get states from GameContext
+  const { gameContext, playerOneContext, playerTwoContext } = useContext(
+    GameContext
+  );
+  const [game] = gameContext;
+  const [playerOne] = playerOneContext;
+  const [playerTwo] = playerTwoContext;
+
+  //Logic to show overlay for the current player (if there is time move to ---> Socket.io logic on backend instead to be able to play with multiple gameroom at the same time)
+  useEffect(() => {
+    if (game.started) {
+      if (location.state === 'initGame' && !playerOne.turnToMove) {
+        setOpponentsMoveOverlay(true);
+      } else if (location.state !== 'initGame' && !playerTwo.turnToMove) {
+        setOpponentsMoveOverlay(true);
+      }
+    }
+  }, [location, game.started, playerOne.turnToMove, playerTwo.turnToMove]);
 
   return (
     <>
-      {opponentsMove && (
+      {opponentsMoveOverlay && (
         <div
           className="position-absolute d-flex flex-column justify-content-center align-items-center"
           style={{
             top: '0',
             height: '100vh',
             width: '100vw',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
             zIndex: 3,
           }}
         >
           {/* Todo: get opponent name from context api */}
-          <p className="text-white h2">Opponent is making a move</p>
+          <p className="text-white h2">GAME IS ON!</p>
+          <p className="text-white h4">
+            Wait for{' '}
+            {playerOne.turnToMove ? playerOne.username : playerTwo.username} to
+            make a move
+          </p>
 
           {/* If there is time replace this with our own animation (maybe a sandglass or pumpkin) */}
-          <Spinner
-            animation="border"
-            className="my-4"
-            style={{ width: '3rem', height: '3rem' }}
-            variant="info"
-            role="status"
-          >
-            <span className="sr-only">Loading...</span>
-          </Spinner>
         </div>
       )}
     </>

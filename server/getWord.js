@@ -16,9 +16,12 @@ const getWord = async (req, res) => {
 
     let chars = [];
     for (let i = 0; i < randomWord.length; i++) {
-      if (randomWord[i].match(/\-/)) chars.push('-');
-      else {
-        chars.push('');
+      if (randomWord[i].match(/\-/)) {
+        chars.push('-');
+      } else if (randomWord[i].match(/\s/)) {
+        chars.push(' ');
+      } else {
+        chars.push('#');
       }
     }
 

@@ -21,7 +21,7 @@ export const Multiplayer = () => {
           className="font-eater text-white position-relative"
           style={{ zIndex: 5 }}
         >
-          Multiplayer
+          Multiplayer Hangman
         </h1>
         <PlayersInfo />
         <OpponentsMoveOverlay />

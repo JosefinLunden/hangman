@@ -68,7 +68,7 @@ const playerJoinsGame = async (userData) => {
 
   //Check if the room exists...
   if (gameRoom === undefined) {
-    io.emit('undefined', 'It seems like this game session no longer exists.');
+    io.emit('undefined');
     console.log('gameRoom is undefined');
     return;
   }
