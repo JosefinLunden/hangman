@@ -10,23 +10,19 @@ const WordDiv = () => {
   useEffect(() => {
     socket.on('renderWordLength', (charsArray) => {
       setChars(charsArray);
-      console.log(charsArray);
     });
     socket.on('letterChecked', (match) => {
-      console.log(
-        `Letter: ${match.letter} Matched index: ${match.foundMatches}`
-      );
-
       let newCharArray = chars;
       let matches = match.foundMatches;
       if (matches.length > 0) {
         for (let i = 0; i < matches.length; i++) {
           newCharArray.splice(matches[i], 1, match.letter);
-          console.log(newCharArray);
         }
-        console.log('MATCH!!!!!!!');
-
         setChars(newCharArray);
+        // Check if word is finished
+        if (!chars.includes('')) {
+          console.log('You won!');
+        }
       } else {
         console.log('Remove skeletons bodypart');
       }
@@ -38,7 +34,6 @@ const WordDiv = () => {
     letterDivs.push(
       <div
         key={i}
-        id={i.toString()}
         // Change classname when there's a space in the word
         className={chars[i] === ' ' ? 'noline' : 'line'}
       >
