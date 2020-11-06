@@ -3,7 +3,6 @@ import { Redirect, useParams, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import ErrorMessagePlayers from '../components/ErrorMessagePlayers';
 
-
 // Import Bootstrap components
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 
@@ -51,9 +50,15 @@ const JoinGameModal = () => {
 
   return (
     <>
-      <Modal show={joinGameModal} backdrop="static" keyboard={false}>
+      <Modal
+        show={joinGameModal}
+        backdrop="static"
+        keyboard={false}
+        dialogClassName="modal-80w"
+        centered
+      >
         <Modal.Header>
-          <Modal.Title className="font-eater text-white">
+          <Modal.Title className="font-creepy text-white">
             Join a game
           </Modal.Title>
         </Modal.Header>
@@ -89,7 +94,7 @@ const JoinGameModal = () => {
 
       {/* If game is cancelled before started redirect to homepage */}
       {gameCanceled && <Redirect to={{ pathname: `/` }} />}
-      <ErrorMessagePlayers userId={userData.userId}/>
+      <ErrorMessagePlayers userId={userData.userId} />
     </>
   );
 };

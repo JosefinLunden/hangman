@@ -13,7 +13,7 @@ export const Home = () => {
         style={{ height: '100vh' }}
         className="d-flex flex-column justify-content-center align-items-center"
       >
-        <h1 className="text-center font-eater text-white">
+        <h1 className="text-center font-butcher text-white">
           Super Guardians Hangman
         </h1>
         <div className="my-5">

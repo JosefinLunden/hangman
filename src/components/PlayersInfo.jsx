@@ -13,10 +13,7 @@ export const PlayersInfo = () => {
 
   return (
     <>
-      <div
-        className="position-absolute"
-        style={{ top: '2rem', left: '2rem', zIndex: '5' }}
-      >
+      <div className="players-info" style={{ zIndex: 5 }}>
         {/* PlayerOne info */}
         <p className="text-white mb-2">
           {/* Player connected or not */}

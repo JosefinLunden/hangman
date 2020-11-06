@@ -35,7 +35,7 @@ const WordDiv = () => {
       <div
         key={i}
         // Change classname when there's a space in the word
-        className={chars[i] === ' ' ? 'noline' : 'line'}
+        className={chars[i] === ' ' ? 'letter-noline' : 'letter-line'}
       >
         {chars[i]}
       </div>
