@@ -7,12 +7,12 @@ h1 {
   margin: 5vw;
   padding: 1rem;
 }
-@media (max-width: 700px) {
+@media (max-width: 650px) {
   .letter-wrapper {
     margin: 0;
   }
   .letter-icons {
-    height: 10px !important;
+    width: 1rem !important;
   }
 }
 .letter-container {
@@ -24,8 +24,9 @@ h1 {
 }
 
 .letter-icons {
-  font-size: 1em;
-  height: 40px;
+  font-size: 1rem;
+  height: 2.5rem;
+  width: 2.5rem;
   background: #000000;
   color: white;
   display: flex;
