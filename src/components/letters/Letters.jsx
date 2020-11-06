@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import { GameContext } from '../../GameContext';
 import './Letters.css';
 
 //Enable socket-connection
 const socket = require('../../socket').socket;
 
 const Letters = () => {
+  const { playerOneContext, playerTwoContext } = useContext(GameContext);
+  const [playerOne] = playerOneContext;
+  const [playerTwo] = playerTwoContext;
+
+  const [currentSocketId, setCurrentSocketID] = useState('');
+  const location = useLocation();
+
+  useEffect(() => {
+    location.state === 'initGame'
+      ? setCurrentSocketID(playerOne.socketId)
+      : setCurrentSocketID(playerTwo.socketId);
+  }, [location.state, playerOne.socketId, playerTwo.socketId]);
+
   const alphabet = [
     'A',
     'B',
@@ -38,8 +53,7 @@ const Letters = () => {
 
   const checkLetter = (e) => {
     let letter = e.target.value;
-    socket.emit('guessLetter', letter);
-    console.log(letter);
+    socket.emit('guessLetter', letter, currentSocketId);
     setGuesses((prevGuesses) => [...prevGuesses, letter]);
   };
 
