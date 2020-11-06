@@ -74,6 +74,7 @@ const StartNewMultigameModal = () => {
         show={showStartGameModal}
         backdrop="static"
         keyboard={false}
+        dialogClassName="modal-80w"
         centered
       >
         <Modal.Header>

@@ -23,7 +23,13 @@ export const ErrorMessagePlayers = (props) => {
 
   return (
     <>
-      <Modal show={showErrorModal} backdrop="static" keyboard={false} centered>
+      <Modal
+        show={showErrorModal}
+        backdrop="static"
+        keyboard={false}
+        dialogClassName="modal-80w"
+        centered
+      >
         <Modal.Header>
           <Modal.Title className="font-creepy text-white">
             There are already two people playing in this room.
