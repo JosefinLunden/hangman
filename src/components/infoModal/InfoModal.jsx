@@ -4,7 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 
 const InfoModal = ({ show, handleClose }) => {
   return (
-    <Modal className="modalBg" show={show} onHide={handleClose}>
+    <Modal className="modalBg" show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
         <Modal.Title className="modalTitle">Game Rules</Modal.Title>
       </Modal.Header>

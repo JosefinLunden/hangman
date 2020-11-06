@@ -50,7 +50,7 @@ const JoinGameModal = () => {
 
   return (
     <>
-      <Modal show={joinGameModal} backdrop="static" keyboard={false}>
+      <Modal show={joinGameModal} backdrop="static" keyboard={false} centered>
         <Modal.Header>
           <Modal.Title className="font-creepy text-white">
             Join a game
