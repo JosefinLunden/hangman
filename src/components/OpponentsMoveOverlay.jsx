@@ -17,10 +17,16 @@ const OpponentsMoveOverlay = () => {
 
   //Logic to show overlay for the current player (if there is time move to ---> Socket.io logic on backend instead to be able to play with multiple gameroom at the same time)
   useEffect(() => {
-    if (game.started) {
-      if (location.state === 'initGame' && !playerOne.turnToMove) {
+    if (game.started && location.state === 'initGame') {
+      if (playerOne.turnToMove) {
+        setOpponentsMoveOverlay(false);
+      } else {
         setOpponentsMoveOverlay(true);
-      } else if (location.state !== 'initGame' && !playerTwo.turnToMove) {
+      }
+    } else if (game.started && location.state !== 'initGame') {
+      if (playerTwo.turnToMove) {
+        setOpponentsMoveOverlay(false);
+      } else {
         setOpponentsMoveOverlay(true);
       }
     }

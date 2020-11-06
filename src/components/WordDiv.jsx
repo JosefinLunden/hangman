@@ -1,48 +1,75 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { GameContext } from '../GameContext';
 
 //Enable socket-connection
 const socket = require('../socket').socket;
 
 const WordDiv = () => {
+  //Get states from GameContext
+  const { gameContext } = useContext(GameContext);
+  const [game] = gameContext;
+
   const [chars, setChars] = useState([]);
+  const [newChars, setNewChars] = useState([]);
+  const gameID = useParams().gameId;
 
-  // Get wordlength from backend
+  //Set Chars
   useEffect(() => {
-    socket.on('renderWordLength', (charsArray) => {
-      setChars(charsArray);
-      console.log(charsArray);
-    });
-    socket.on('letterChecked', (match) => {
-      console.log(
-        `Letter: ${match.letter} Matched index: ${match.foundMatches}`
-      );
+    if (game.charsInWord.length > 0) {
+      game.charsInWord.forEach((row, i) => {
+        setChars((prevChars) => [{ letter: row, index: i }, ...prevChars]);
+      });
+    }
+  }, [game.charsInWord]);
 
-      let newCharArray = chars;
-      let matches = match.foundMatches;
-      if (matches.length > 0) {
-        for (let i = 0; i < matches.length; i++) {
-          newCharArray.splice(matches[i], 1, match.letter);
-          console.log(newCharArray);
-        }
-        console.log('MATCH!!!!!!!');
+  //Set newChars
+  useEffect(() => {
+    let usedChars = [];
+    let newCharsArray = chars;
 
-        setChars(newCharArray);
+    chars.forEach((row, index) => {
+      if (row.letter !== '') {
+        usedChars.push(row.index);
       } else {
-        console.log('Remove skeletons bodypart');
+        if (usedChars.includes(row.index)) {
+          newCharsArray.splice(index, 1);
+        }
       }
     });
+    //Sort by index
+    newCharsArray.sort((a, b) => (a.index > b.index ? 1 : -1));
+    setNewChars(newCharsArray);
   }, [chars]);
 
-  const letterDivs = [];
-  for (let i = 0; i < chars.length; i++) {
-    letterDivs.push(
-      <div key={i} id={i.toString()} className="line">
-        {chars[i]}
-      </div>
-    );
-  }
+  //Socket event
+  useEffect(() => {
+    socket.on('letterChecked', (match) => {
+      if (match.foundMatches.length > 0) {
+        match.foundMatches.forEach((row) => {
+          setChars((prevChars) => [
+            { letter: match.letter, index: row },
+            ...prevChars,
+          ]);
+        });
+      } else {
+        socket.emit('handleNoMatch', gameID);
+        console.log('Remove skelton part');
+      }
+    });
+  }, [gameID]);
 
-  return <div className="word">{letterDivs}</div>;
+  return (
+    <div className="word">
+      {newChars.map((char, i) => {
+        return (
+          <div key={i} className="line">
+            {char.letter}
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default WordDiv;
