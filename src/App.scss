@@ -35,6 +35,13 @@ main {
   background-image: linear-gradient(180deg, rgb(0, 25, 46) 90%, black 20%);
   z-index: 0;
 }
+
+@media screen and (max-width: 950px) {
+  .svg-background {
+    background-image: linear-gradient(180deg, rgb(0, 25, 46) 50%, black 20%);
+  }
+}
+
 .cauldron {
   position: absolute;
   bottom: 5%;
