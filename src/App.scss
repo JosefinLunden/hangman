@@ -2,17 +2,18 @@
 @import 'custom';
 
 // Import fonts
-@import url('https://fonts.googleapis.com/css2?family=Butcherman&family=Creepster&family=Eater&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Butcherman&family=Creepster&display=swap');
 
 //Font classes (delete those we don't use later)
 .font-butcher {
-  font-family: 'Butcherman', cursive !important;
+  font-family: 'Butcherman', sans-serif !important;
 }
 .font-creepy {
-  font-family: 'Creepster', cursive !important;
+  font-family: 'Creepster', sans-serif !important;
 }
-.font-eater {
-  font-family: 'Eater', cursive;
+.font-sans {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
 }
 
 body {

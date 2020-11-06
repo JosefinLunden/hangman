@@ -72,7 +72,7 @@ const StartNewMultigameModal = () => {
     <>
       <Modal show={showStartGameModal} backdrop="static" keyboard={false}>
         <Modal.Header>
-          <Modal.Title className="font-eater text-white">
+          <Modal.Title className="font-creepy text-white">
             Welcome to a new game
           </Modal.Title>
         </Modal.Header>
