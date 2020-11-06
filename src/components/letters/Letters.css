@@ -1,16 +1,9 @@
-h1 {
-  text-align: center;
-  padding: 20px;
-}
 .letter-wrapper {
   width: 25vw;
   margin: 5vw;
   padding: 1rem;
 }
 @media (max-width: 650px) {
-  .letter-wrapper {
-    margin: 0;
-  }
   .letter-icons {
     width: 1rem !important;
   }
