@@ -13,6 +13,10 @@ let creatorUsername;
 // Object returned after running getWord function
 let data;
 
+//SocketID:s
+let playerOneSocketId;
+let playerTwoSocketId;
+
 //Sets up all the socket event listeners
 const initGame = (inputIo, inputSocket) => {
   // Set global variables
@@ -33,11 +37,15 @@ const initGame = (inputIo, inputSocket) => {
 
   // Guessed letter is checked against word in backend
   socket.on('guessLetter', guessLetter);
+
+  // Guessed letter is checked against word in backend
+  socket.on('handleNoMatch', handleNoMatch);
 };
 
 const createNewGame = (gameId) => {
   // Return the game ID and the socket ID to the browser client
   io.emit('newGameCreated', gameId);
+  playerOneSocketId = socket.id;
   console.log('A new game is created: ', { gameId, creatorId: socket.id });
 
   // Join the Room and wait for the other player
@@ -51,13 +59,16 @@ const addUserName = (username) => {
   creatorUsername = username;
 };
 
-const guessLetter = async (letter, word) => {
+// const guessLetter = async (letter, word)
+const guessLetter = async (letter, socketId, gameId) => {
   try {
-    word = data.word;
-    let match = await checkLetter(letter, word);
-    console.log(match);
-    console.log(letter + ' ' + match.foundMatches);
-    socket.emit('letterChecked', match);
+    let match = await checkLetter(letter, data.word);
+
+    if (socketId === playerOneSocketId) {
+      io.to(playerOneSocketId).emit('letterChecked', match);
+    } else {
+      io.to(playerTwoSocketId).emit('letterChecked', match);
+    }
   } catch (error) {
     return `Couldn't check guessed letter because ${error}`;
   }
@@ -82,6 +93,8 @@ const playerJoinsGame = async (userData) => {
     // attach the socket id to the userData object.
     userData.mySocketId = socket.id;
 
+    playerTwoSocketId = socket.id;
+
     // Join the gameRoom
     socket.join(userData.gameId);
 
@@ -95,14 +108,26 @@ const playerJoinsGame = async (userData) => {
     if (gameRoom.length === 2) {
       io.sockets
         .in(userData.gameId)
-        .emit('startGame', creatorUsername, userData.username);
+        .emit(
+          'startGame',
+          creatorUsername,
+          userData.username,
+          data.charsArray,
+          playerOneSocketId,
+          playerTwoSocketId
+        );
 
-      io.sockets.in(userData.gameId).emit('renderWordLength', data.charsArray);
+      // io.sockets.in(userData.gameId).emit('renderWordLength', data.charsArray);
     }
   } else {
     // Otherwise, send an error message back to the player.
     io.emit('tooManyPlayers', userData.userId);
   }
+};
+
+const handleNoMatch = (gameId) => {
+  console.log('Handle No Match ' + gameId);
+  io.emit('handleNoMatch');
 };
 
 exports.initGame = initGame;
