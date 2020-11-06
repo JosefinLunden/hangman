@@ -36,9 +36,51 @@ main {
   z-index: 0;
 }
 
-@media screen and (max-width: 950px) {
+// Styling line-divs
+.word {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+  color: orangered;
+  font-size: 3rem;
+}
+
+.line {
+  display: flex;
+  justify-content: center;
+  width: 2rem;
+  border-bottom: 3px solid black;
+  margin: 2rem 0.3rem 1rem 0.3rem;
+}
+
+.noline {
+  display: flex;
+  justify-content: center;
+  width: 2rem;
+  margin: 2rem 0.3rem 1rem 0.3rem;
+}
+
+.players-info {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 3rem 0 0 2rem;
+}
+
+@media screen and (max-width: 965px) {
   .svg-background {
     background-image: linear-gradient(180deg, rgb(0, 25, 46) 50%, black 20%);
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .players-info {
+    position: relative;
+    margin: 0 0 0 2rem;
   }
 }
 
@@ -171,7 +213,7 @@ main {
 
 //Bootstrap styling
 .btn {
-  font-family: 'Creepster', cursive !important;
+  font-family: 'Creepster', sans-serif !important;
   letter-spacing: 2px;
 }
 
@@ -181,30 +223,4 @@ main {
 
 .modal-header {
   background-color: #321291;
-}
-
-// Styling line-divs
-.word {
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  justify-content: center;
-  color: orangered;
-  font-size: 3rem;
-}
-
-.line {
-  display: flex;
-  justify-content: center;
-  width: 2rem;
-  border-bottom: 3px solid black;
-  margin: 2rem 0.3rem 1rem 0.3rem;
-  // align-items: center;
-}
-
-.noline {
-  display: flex;
-  justify-content: center;
-  width: 2rem;
-  margin: 2rem 0.3rem 1rem 0.3rem;
 }
