@@ -30,7 +30,7 @@
 .letter-icons:hover {
   cursor: pointer;
 }
-.btn:disabled {
+.btn-lg:disabled {
   opacity: 0.4;
   cursor: default;
 }
