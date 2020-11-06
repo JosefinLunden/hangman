@@ -105,16 +105,7 @@ export const GameInfoProvider = (props) => {
         }));
       }
     });
-  }, [
-    playerOne.currentChars,
-    playerOne.lives,
-    playerOne.socketId,
-    playerOne.turnToMove,
-    playerTwo.currentChars,
-    playerTwo.lives,
-    setPlayerOne,
-    setPlayerTwo,
-  ]);
+  }, [playerOne.lives, playerOne.turnToMove, playerTwo.lives]);
 
   return (
     <GameContext.Provider
