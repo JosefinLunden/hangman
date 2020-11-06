@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hangman Game
+Group work in the course agile development. Feel free to check out our workflow in projects.
 
 ## Available Scripts
 
