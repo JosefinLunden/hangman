@@ -2,17 +2,18 @@
 @import 'custom';
 
 // Import fonts
-@import url('https://fonts.googleapis.com/css2?family=Butcherman&family=Creepster&family=Eater&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Butcherman&family=Creepster&display=swap');
 
 //Font classes (delete those we don't use later)
 .font-butcher {
-  font-family: 'Butcherman', cursive !important;
+  font-family: 'Butcherman', sans-serif !important;
 }
 .font-creepy {
-  font-family: 'Creepster', cursive !important;
+  font-family: 'Creepster', sans-serif !important;
 }
-.font-eater {
-  font-family: 'Eater', cursive;
+.font-sans {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
 }
 
 body {
@@ -25,6 +26,12 @@ main {
   z-index: 2;
 }
 
+h1 {
+  text-align: center;
+  padding: 20px;
+  margin-bottom: '3rem';
+}
+
 .svg-background {
   position: absolute;
   top: 0;
@@ -34,6 +41,71 @@ main {
   background-image: linear-gradient(180deg, rgb(0, 25, 46) 90%, black 20%);
   z-index: 0;
 }
+
+// Styling line-divs
+.word {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 3rem;
+  margin-left: 5vw;
+  padding-left: 1.5rem;
+  // justify-content: center;
+  color: orangered;
+  font-size: 3rem;
+}
+.letter-line {
+  display: flex;
+  justify-content: center;
+  width: 2rem;
+  border-bottom: 3px solid black;
+  margin: 0 0.3rem -0.8rem 0.3rem;
+}
+.letter-noline {
+  display: flex;
+  justify-content: center;
+  width: 2rem;
+  margin: 0 0.3rem 1rem 0.3rem;
+}
+
+.players-info {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 3rem 0 0 2rem;
+}
+
+@media screen and (max-width: 965px) {
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+  h1 {
+    margin-bottom: '1rem';
+  }
+  .letter-line {
+    width: 1.5rem;
+    margin: 0 0.3rem -1.6rem 0.3rem;
+  }
+  .letter-noline {
+    width: 1.5rem;
+  }
+  .players-info {
+    position: relative;
+    margin: 0 0 0 2rem;
+  }
+  .svg-background {
+    background-image: linear-gradient(180deg, rgb(0, 25, 46) 50%, black 20%);
+  }
+  .word {
+    height: 1rem;
+    margin-left: 5vw;
+    padding-left: 0;
+    color: orangered;
+    font-size: 2rem;
+  }
+}
+
 .cauldron {
   position: absolute;
   bottom: 5%;
@@ -163,7 +235,7 @@ main {
 
 //Bootstrap styling
 .btn {
-  font-family: 'Creepster', cursive !important;
+  font-family: 'Creepster', sans-serif !important;
   letter-spacing: 2px;
 }
 
@@ -173,30 +245,4 @@ main {
 
 .modal-header {
   background-color: #321291;
-}
-
-// Styling line-divs
-.word {
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  justify-content: center;
-  color: orangered;
-  font-size: 3rem;
-}
-
-.line {
-  display: flex;
-  justify-content: center;
-  width: 2rem;
-  border-bottom: 3px solid black;
-  margin: 2rem 0.3rem 1rem 0.3rem;
-  // align-items: center;
-}
-
-.noline {
-  display: flex;
-  justify-content: center;
-  width: 2rem;
-  margin: 2rem 0.3rem 1rem 0.3rem;
 }

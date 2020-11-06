@@ -17,13 +17,15 @@ export const Multiplayer = () => {
     <>
       <PlayBackground />
       <main>
-        <h1
-          className="font-eater text-white position-relative"
-          style={{ zIndex: 5 }}
-        >
-          Multiplayer Hangman
-        </h1>
-        <PlayersInfo />
+        <header>
+          <h1
+            className="font-butcher text-white position-relative"
+            style={{ zIndex: 5 }}
+          >
+            Multiplayer Hangman
+          </h1>
+          <PlayersInfo />
+        </header>
         <OpponentsMoveOverlay />
         <WordDiv />
         <Letters />

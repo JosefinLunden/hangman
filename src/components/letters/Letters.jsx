@@ -62,7 +62,7 @@ const Letters = () => {
       <div className="letter-container">
         {alphabet.map((letter) => (
           <button
-            className="letter-icons btn btn-lg btn-primary m-2"
+            className="letter-icons btn-lg btn-primary m-2"
             key={letter}
             value={letter}
             onClick={checkLetter}

@@ -13,10 +13,20 @@ export const Singleplayer = () => {
     <>
       <PlayBackground />
       <main>
-        <h1 className=" font-eater text-white ">Singleplayer</h1>
+        <h1
+          className="font-butcher text-white position-relative"
+          style={{ zIndex: 5 }}
+        >
+          Singleplayer
+        </h1>
         <WordDiv />
         <Letters />
-        <Button variant="info" onClick={() => setModalShow(true)}>
+        <Button
+          className="position-absolute"
+          style={{ bottom: '2rem', right: '2rem', zIndex: 5 }}
+          variant="info"
+          onClick={() => setModalShow(true)}
+        >
           Rules
         </Button>
         <Skeleton />

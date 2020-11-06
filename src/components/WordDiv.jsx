@@ -63,7 +63,10 @@ const WordDiv = () => {
     <div className="word">
       {newChars.map((char, i) => {
         return (
-          <div key={i} className={chars.index === ' ' ? 'noline' : 'line'}>
+          <div
+            key={i}
+            className={chars.index === ' ' ? 'letter-noline' : 'letter-line'}
+          >
             {char.letter}
           </div>
         );
